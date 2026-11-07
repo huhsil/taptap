@@ -65,7 +65,15 @@
     }
   }
   function doConnect() {
-    conn = peer.connect(TD.PREFIX + roomCode, { reliable: true });
+    const c = (conn = peer.connect(TD.PREFIX + roomCode, { reliable: true }));
+    // 10초 안에 연결이 안 되면 포기하고 재시도 (ICE 협상이 멈춘 경우 대비)
+    setTimeout(() => {
+      if (conn === c && !c.open) {
+        try { c.close(); } catch (e) {}
+        $('#conn-msg').textContent = '연결이 오래 걸려요… 다시 시도 중 (' + (retries + 1) + ')';
+        onLost();
+      }
+    }, 10000);
     conn.on('open', () => {
       retries = 0;
       $('#banner').classList.add('hidden');

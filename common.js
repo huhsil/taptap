@@ -22,12 +22,27 @@
         o.path = '/';
         o.secure = false;
       } else {
+        // STUN만 쓰면 통신사(LTE/5G) 망의 안드로이드 폰 등에서 연결이 안 될 수 있어 TURN(중계) 서버도 포함
         o.config = {
           iceServers: [
             { urls: 'stun:stun.l.google.com:19302' },
-            { urls: 'stun:stun1.l.google.com:19302' },
             { urls: 'stun:global.stun.twilio.com:3478' },
+            {
+              urls: ['turn:eu-0.turn.peerjs.com:3478', 'turn:us-0.turn.peerjs.com:3478'],
+              username: 'peerjs',
+              credential: 'peerjsp',
+            },
+            {
+              urls: [
+                'turn:openrelay.metered.ca:80',
+                'turn:openrelay.metered.ca:443',
+                'turn:openrelay.metered.ca:443?transport=tcp',
+              ],
+              username: 'openrelayproject',
+              credential: 'openrelayproject',
+            },
           ],
+          iceCandidatePoolSize: 4,
         };
       }
       return o;
