@@ -1,0 +1,128 @@
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #fbbf24;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; }
+button { font: inherit; cursor: pointer; }
+.hidden { display: none !important; }
+
+/* ---------- 랜딩 ---------- */
+.landing { min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; text-align: center; }
+.landing h1 { font-size: 44px; margin: 0; }
+.landing p { color: var(--muted); max-width: 480px; line-height: 1.6; margin: 0; }
+.btn { background: var(--accent); color: #1c1917; border: 0; border-radius: 14px; padding: 14px 26px; font-weight: 800; font-size: 18px; text-decoration: none; display: inline-block; }
+.btn.secondary { background: #334155; color: var(--text); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ---------- 진행자 화면 ---------- */
+.host { height: 100%; display: flex; flex-direction: column; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 22px; background: #0b1220; border-bottom: 1px solid #243047; }
+.topbar h1 { margin: 0; font-size: 22px; }
+.topbar .right { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 14px; }
+.topbar button { background: #334155; color: var(--text); border: 0; border-radius: 8px; padding: 6px 12px; }
+.screen { flex: 1; min-height: 0; display: none; }
+.screen.active { display: flex; }
+
+.setup { align-items: center; justify-content: center; }
+.card { background: var(--panel); border-radius: 18px; padding: 28px 32px; width: min(620px, 94vw); }
+.card h2 { margin: 0 0 18px; }
+.field { margin-bottom: 18px; }
+.field > label { display: block; color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+.seg { display: flex; gap: 8px; }
+.seg button { flex: 1; background: #0f172a; color: var(--text); border: 2px solid #334155; border-radius: 10px; padding: 10px; font-weight: 700; }
+.seg button.on { border-color: var(--accent); background: #3b2f0b; }
+.seg small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.team-names { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.team-names input { background: #0f172a; border: 2px solid; border-radius: 10px; color: var(--text); padding: 10px 12px; font: inherit; width: 100%; }
+
+.lobby { padding: 20px 28px; gap: 28px; align-items: stretch; }
+.join-box { background: #fff; color: #0f172a; border-radius: 22px; padding: 22px; text-align: center; width: 340px; flex: none; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.join-box svg { width: 100%; height: auto; }
+.join-box .code { font-size: 44px; font-weight: 900; letter-spacing: 6px; }
+.join-box .url { font-size: 12px; color: #475569; word-break: break-all; }
+.join-box .warn { background: #fee2e2; color: #991b1b; font-size: 13px; padding: 8px; border-radius: 8px; }
+.lobby-right { flex: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.lobby-head { display: flex; justify-content: space-between; align-items: center; }
+.lobby-head h2 { margin: 0; font-size: 26px; }
+.team-cards { flex: 1; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; min-height: 0; }
+.team-card { background: var(--panel); border-top: 8px solid var(--c); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; min-height: 0; }
+.team-card .nm { font-size: 22px; font-weight: 800; color: var(--c); }
+.team-card .cnt { font-size: 40px; font-weight: 900; }
+.team-card .cnt small { font-size: 16px; color: var(--muted); font-weight: 400; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; overflow: auto; align-content: flex-start; }
+.chip { background: #0f172a; border-radius: 99px; padding: 3px 10px; font-size: 13px; }
+
+/* 경주 화면 */
+.race { flex-direction: column; background: linear-gradient(#1e3a8a 0, #38bdf8 14%, #86efac 14.1%); position: relative; }
+.lanes { flex: 1; display: flex; flex-direction: column; min-height: 0; padding: 16px 0 10px; }
+.lane { flex: 1; display: flex; align-items: stretch; min-height: 0; position: relative; border-bottom: 3px dashed rgba(255,255,255,.55); background: repeating-linear-gradient(90deg, #a16207 0 80px, #b4741a 80px 160px); }
+.lane:nth-child(odd) { filter: brightness(.94); }
+.lane-label { width: 150px; flex: none; background: var(--c); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; font-weight: 900; text-shadow: 0 1px 3px rgba(0,0,0,.4); z-index: 2; }
+.lane-label .n { font-size: clamp(18px, 2.6vw, 32px); }
+.lane-label .s { font-size: 14px; opacity: .9; font-weight: 600; }
+.track { flex: 1; position: relative; overflow: hidden; }
+.finish { position: absolute; right: 0; top: 0; bottom: 0; width: 34px; background: repeating-conic-gradient(#fff 0 25%, #111 0 50%) 0 0 / 17px 17px; z-index: 1; }
+.horse { position: absolute; left: 0; bottom: 4%; height: 92%; aspect-ratio: 120 / 90; will-change: transform; z-index: 3; }
+.horse svg { width: 100%; height: 100%; overflow: visible; }
+.pct { position: absolute; right: 44px; top: 6px; font-weight: 900; font-size: clamp(16px, 2vw, 26px); color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,.6); z-index: 4; }
+
+/* 말 애니메이션 */
+.horse .body-bob { animation: bob var(--gal, .5s) ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.horse .leg { transform-box: view-box; animation: gallop var(--gal, .5s) ease-in-out infinite; }
+.horse .leg.f1 { transform-origin: 80px 54px; }
+.horse .leg.f2 { transform-origin: 74px 54px; animation-delay: calc(var(--gal, .5s) * -.15); }
+.horse .leg.b1 { transform-origin: 32px 54px; animation-delay: calc(var(--gal, .5s) * -.5); }
+.horse .leg.b2 { transform-origin: 38px 54px; animation-delay: calc(var(--gal, .5s) * -.65); }
+.horse .tail { transform-box: view-box; transform-origin: 22px 38px; animation: tail var(--gal, .5s) ease-in-out infinite; }
+.horse.idle .body-bob, .horse.idle .leg, .horse.idle .tail { animation-play-state: paused; }
+@keyframes gallop { 0%,100% { transform: rotate(-38deg); } 50% { transform: rotate(38deg); } }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes tail { 0%,100% { transform: rotate(8deg); } 50% { transform: rotate(-12deg); } }
+
+.cd { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 28vw; font-weight: 900; color: #fff; text-shadow: 0 8px 30px rgba(0,0,0,.6); z-index: 10; pointer-events: none; background: rgba(0,0,0,.25); }
+.cd.pop span { animation: pop .9s ease-out; }
+@keyframes pop { 0% { transform: scale(2); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(.9); opacity: .9; } }
+
+/* 결과 */
+.result { position: absolute; inset: 0; background: rgba(15,23,42,.93); z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 20px; overflow: auto; }
+.result h2 { font-size: clamp(36px, 6vw, 72px); margin: 0; text-align: center; }
+.rank { display: flex; flex-direction: column; gap: 8px; width: min(560px, 92vw); }
+.rank-row { display: flex; align-items: center; gap: 12px; background: var(--panel); border-left: 10px solid var(--c); border-radius: 10px; padding: 10px 16px; font-size: 22px; font-weight: 800; }
+.rank-row .no { width: 34px; color: var(--accent); }
+.rank-row .grow { flex: 1; }
+.rank-row small { color: var(--muted); font-weight: 400; font-size: 14px; }
+.mvp { color: var(--muted); text-align: center; line-height: 1.7; }
+.mvp b { color: var(--accent); }
+.result .actions { display: flex; gap: 10px; margin-top: 8px; }
+.confetti { position: fixed; top: -20px; width: 10px; height: 16px; z-index: 30; animation: fall linear forwards; pointer-events: none; }
+@keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+
+/* ---------- 폰 화면 ---------- */
+.phone { height: 100%; display: flex; flex-direction: column; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
+.pscreen { flex: 1; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 22px; gap: 14px; text-align: center; min-height: 0; }
+.pscreen.active { display: flex; }
+.pscreen h2 { margin: 0; font-size: 26px; }
+.pscreen p { margin: 0; color: var(--muted); line-height: 1.5; }
+.pscreen input { width: 100%; max-width: 360px; background: var(--panel); border: 2px solid #334155; border-radius: 12px; color: var(--text); padding: 14px; font-size: 18px; text-align: center; }
+.team-btns { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 360px; }
+.team-btn { background: var(--c); color: #fff; border: 0; border-radius: 16px; padding: 18px; font-size: 22px; font-weight: 900; text-shadow: 0 1px 3px rgba(0,0,0,.35); display: flex; justify-content: space-between; align-items: center; }
+.team-btn small { font-weight: 600; opacity: .9; font-size: 14px; }
+.pill { background: var(--c); color: #fff; border-radius: 99px; padding: 8px 20px; font-weight: 900; font-size: 22px; }
+.bigcd { font-size: 40vw; font-weight: 900; line-height: 1; }
+
+.tap-screen { padding: 0; gap: 0; justify-content: stretch; align-items: stretch; background: var(--c); }
+.tap-info { padding: 14px 18px 6px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; text-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.tap-bar { margin: 0 18px; height: 14px; background: rgba(0,0,0,.3); border-radius: 99px; overflow: hidden; }
+.tap-bar i { display: block; height: 100%; width: 0; background: #fff; transition: width .2s linear; }
+.tap-pad { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.35); }
+.tap-pad .big { font-size: 22vw; font-weight: 900; line-height: 1; }
+.tap-pad .hint { font-size: 22px; font-weight: 800; opacity: .9; }
+.tap-pad.hit { background: rgba(255,255,255,.18); }
+.ripple { position: fixed; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; background: rgba(255,255,255,.55); pointer-events: none; animation: rip .45s ease-out forwards; }
+@keyframes rip { to { transform: scale(2.4); opacity: 0; } }
+.banner { position: fixed; top: 0; left: 0; right: 0; background: #b91c1c; color: #fff; padding: 8px; text-align: center; font-size: 14px; z-index: 50; }

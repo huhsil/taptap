@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>탭 더비 - 진행자 화면</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="host">
+  <div class="topbar">
+    <h1>🏇 탭 더비</h1>
+    <div class="right"><span id="status">서버 연결 중…</span><button id="fs">전체화면</button></div>
+  </div>
+
+  <!-- 1. 설정 -->
+  <section class="screen setup active" id="s-setup">
+    <div class="card">
+      <h2>게임 설정</h2>
+      <div class="field">
+        <label>팀 수</label>
+        <div class="seg" id="seg-teams">
+          <button data-v="2">2팀</button><button data-v="3">3팀</button><button data-v="4" class="on">4팀</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>팀 이름 (수정 가능)</label>
+        <div class="team-names" id="team-names"></div>
+      </div>
+      <div class="field">
+        <label>경주 길이 · 1인당 목표 탭 수</label>
+        <div class="seg" id="seg-goal">
+          <button data-v="100">짧게<small>100탭 · 약 25초</small></button>
+          <button data-v="150" class="on">보통<small>150탭 · 약 40초</small></button>
+          <button data-v="250">길게<small>250탭 · 약 1분+</small></button>
+        </div>
+      </div>
+      <button class="btn" id="btn-open" style="width:100%" disabled>참가자 모집 시작</button>
+    </div>
+  </section>
+
+  <!-- 2. 로비 -->
+  <section class="screen lobby" id="s-lobby">
+    <div class="join-box">
+      <div style="font-weight:800">스마트폰 카메라로 QR 스캔!</div>
+      <div id="qr"></div>
+      <div>또는 접속 코드</div>
+      <div class="code" id="code">----</div>
+      <div class="url" id="url"></div>
+      <div class="warn hidden" id="warn"></div>
+    </div>
+    <div class="lobby-right">
+      <div class="lobby-head">
+        <h2>참가자 <span id="total">0</span>명</h2>
+        <button class="btn" id="btn-start" disabled>출발!</button>
+      </div>
+      <div class="team-cards" id="team-cards"></div>
+    </div>
+  </section>
+
+  <!-- 3. 경주 -->
+  <section class="screen race" id="s-race">
+    <div class="lanes" id="lanes"></div>
+    <div class="cd hidden" id="cd"><span></span></div>
+    <div class="result hidden" id="result"></div>
+  </section>
+</div>
+
+<script src="vendor/peerjs.min.js"></script>
+<script src="vendor/qrcode.js"></script>
+<script src="common.js"></script>
+<script src="host.js"></script>
+</body>
+</html>

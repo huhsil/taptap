@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>탭 더비</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="phone" id="app">
+  <div class="banner hidden" id="banner">연결이 끊겼어요. 다시 연결 중…</div>
+
+  <section class="pscreen active" id="p-code">
+    <h2>🏇 탭 더비</h2>
+    <p>화면에 보이는 접속 코드를 입력하세요</p>
+    <input id="in-code" maxlength="4" autocapitalize="characters" autocomplete="off" placeholder="ABCD">
+    <button class="btn" id="btn-code">입장</button>
+  </section>
+
+  <section class="pscreen" id="p-connecting">
+    <h2>연결 중…</h2>
+    <p id="conn-msg">진행자 화면을 찾고 있어요</p>
+  </section>
+
+  <section class="pscreen" id="p-join">
+    <h2>🏇 팀을 고르세요!</h2>
+    <input id="in-name" maxlength="8" autocomplete="off" placeholder="닉네임 (선택)">
+    <div class="team-btns" id="team-btns"></div>
+  </section>
+
+  <section class="pscreen" id="p-lobby">
+    <p>내 팀</p>
+    <div class="pill" id="my-pill">-</div>
+    <h2 id="my-name"></h2>
+    <p>출발 신호를 기다리는 중…<br>화면을 켜둔 채로 기다려 주세요 📱</p>
+    <button class="btn secondary" id="btn-change">팀 바꾸기</button>
+  </section>
+
+  <section class="pscreen" id="p-cd">
+    <div class="bigcd" id="cd-num">3</div>
+  </section>
+
+  <section class="pscreen tap-screen" id="p-race">
+    <div class="tap-info"><span id="t-rank">-</span><span id="t-team"></span></div>
+    <div class="tap-bar"><i id="t-bar"></i></div>
+    <div class="tap-pad" id="pad">
+      <div class="big" id="t-count">0</div>
+      <div class="hint">TAP! TAP! TAP!</div>
+    </div>
+  </section>
+
+  <section class="pscreen" id="p-done">
+    <h2 id="d-title"></h2>
+    <div class="rank" id="d-rank" style="width:100%;max-width:360px"></div>
+    <p id="d-me"></p>
+    <p>진행자가 다시 시작하면 자동으로 이어져요</p>
+  </section>
+
+  <section class="pscreen" id="p-msg">
+    <h2 id="m-title"></h2>
+    <p id="m-text"></p>
+    <button class="btn secondary hidden" id="btn-retry">다시 시도</button>
+  </section>
+</div>
+
+<script src="vendor/peerjs.min.js"></script>
+<script src="common.js"></script>
+<script src="play.js"></script>
+</body>
+</html>
